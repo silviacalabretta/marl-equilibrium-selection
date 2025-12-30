@@ -1,6 +1,6 @@
 # Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework
 
-<small>Final project for the Reinforcement Learning course, developed together with Ludovica Bianchi.</small>
+<sub>_Final project for the Reinforcement Learning course, developed together with Ludovica Bianchi._</sub>
 
 This work implements what proposed in [Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework](https://arxiv.org/abs/2406.08844), written by Runyu Zhang, Jeff Shamma, Na Li. The paper addresses the problem of equilibrium selection in multi-agent reinforcement learning (MARL). 
 
