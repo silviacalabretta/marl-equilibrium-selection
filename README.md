@@ -4,7 +4,7 @@ This work implements what proposed in [Equilibrium Selection for Multi-agent Rei
 
 While many MARL algorithms ensure convergence to some Nash equilibrium (NE), these equilibria can differ significantly in terms of rewards and social welfare. Building on insights from classical game theory, where decentralized learning can select potential-maximizing or Pareto-optimal NEs in normal-form games, we implement a unified framework for equilibrium selection in stochastic games. The framework is modular and adaptable, allowing established learning rules and selection results from normal-form games to be extended to the MARL setting.
 
-![algorithm.png](img/algorithm1.png)
+<img src="img/algorithm1.png" alt="Learning algorithm" width="50%">
 
 We apply this framework to two normal-form games with two players and two stages $h = 1,2$, showing the convergence with two different learning rules.
 
@@ -41,7 +41,14 @@ $$
 *Mood dynamics:*
 
 $$
-\begin{cases} \text{if} \; \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ \\ \text{else} \rightarrow \xi_i^{(t+1)} = \begin{cases} C \quad\text{with prob} \; \epsilon^{1-r_i(a^{(t+1)})}\\ D \quad\text{otherwise} \end{cases} \end{cases}
+\begin{cases} 
+    \text{if} \; \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ 
+    \\ 
+    \text{else} \rightarrow \xi_i^{(t+1)} = \begin{cases} 
+        C \quad\text{with prob} \; \epsilon^{1-r_i(a^{(t+1)})} \\ 
+        D \quad\text{otherwise} 
+    \end{cases} 
+\end{cases}
 $$
 
 
@@ -63,7 +70,7 @@ The process can be summarized as a stochastic game. For h = 1, there’s only on
 - if $a_1 = a_2 = 1$ then the game will transit to $s = B$, where they can arrive at the deep level for location 1 and shallow level at location 0;
 - if the players fail to agree on a location, ($a = (0,1) or (1,0)$), they make no progress ($s = O$) and the reward will remain the same as stage $h = 1$.
 
-![treasure_rewards.png](img/treasure_rewards.png)
+<img src="img/treasure_rewards.png" alt="Description of the Treasure Game rewards" width="50%">
 
 In this game, there are two strict NEs:
 1. agreeing twice on location 0, i.e. $a_{i,h} = 0$ for $h = 1,2$ and $i = 1,2$; 
@@ -79,7 +86,7 @@ This coordination game models the process of two players choosing whether to hun
 
 The process can be summarized as a stochastic game:
 
-![staghunt_rewards1.png](img/staghunt_rewards1.png)
+<img src="img/staghunt_rewards1.png" alt="Description of the Stag Hunt Game rewards" width="50%">
 
 In this game, there are two strict Nash equilibria:
 
