@@ -31,21 +31,24 @@ For this learning rule, the hidden variable $\xi$ takes the form $\xi = (\xi_1, 
 *Action dynamics:* 
 
 $$
-\begin{cases}\text{if} \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ 
-
-\text{if} xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}= a_i^{(t)} \quad\text{with prob } 1 - \epsilon^c\\
-
-\sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob} \; \epsilon^c\end{cases} \end{cases}
+\begin{cases}
+    \text{if} \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ 
+    \\
+    \text{if} \xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}
+        = a_i^{(t)} \quad\text{with prob } 1 - \epsilon^c\\
+        \sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob } \epsilon^c
+    \end{cases} 
+\end{cases}
 $$
 
 *Mood dynamics:*
 
 $$
 \begin{cases} 
-    \text{if} \; \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ 
+    \text{if} \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ 
     \\ 
     \text{else} \rightarrow \xi_i^{(t+1)} = \begin{cases} 
-        C \quad\text{with prob} \; \epsilon^{1-r_i(a^{(t+1)})} \\ 
+        C \quad\text{with prob } \epsilon^{1-r_i(a^{(t+1)})} \\ 
         D \quad\text{otherwise} 
     \end{cases} 
 \end{cases}
