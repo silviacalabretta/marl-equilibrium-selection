@@ -31,7 +31,11 @@ For this learning rule, the hidden variable $\xi$ takes the form $\xi = (\xi_1, 
 *Action dynamics:* 
 
 $$
-\begin{cases}\text{if} \; \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ \\ \text{if} \; xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}= a_i^{(t)} \quad\text{with prob} \; 1 - \epsilon^c\\ \sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob} \; \epsilon^c\end{cases} \end{cases}
+\begin{cases}\text{if} \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ 
+
+\text{if} xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}= a_i^{(t)} \quad\text{with prob } 1 - \epsilon^c\\
+
+\sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob} \; \epsilon^c\end{cases} \end{cases}
 $$
 
 *Mood dynamics:*
@@ -52,7 +56,7 @@ This identical interest game captures the process of two players collaboratively
 - Location 0 has reward 1 at the shallow level and 0.5 at the deep level. 
 - Location 1 has reward 0 at the shallow level and 2 at the deep level. 
 
-![treasure_game.png](img/treasure_game.png)
+<img src="img/treasure_game.png" alt="Description of the Treasure Game" width="50%">
 
 The process can be summarized as a stochastic game. For h = 1, there’s only one state and thus the stage reward is given by a 2 by 2 reward matrix with nonzero reward of value 1 only when a = (0,0). The transition to the second stage follows the following transition rule: 
 - if both players 1 and 2 choose to dig at location 0 ($a_1 = a_2 = 0$), then the game will transit to state $s = A$, where they can arrive at the deep level for location 0 and shallow level at location 1;
