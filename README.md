@@ -10,6 +10,7 @@ We apply this framework to two normal-form games with two players and two stages
 
 ## Learning Rules
 For equilibrium selection, we assume that the group of agents follows certain iterative learning rules, which describe how they respond to the reward outcome from the previous action. In particular this is represented through a transition kernel $K^\epsilon$:
+
 $$
 (a^{(t+1)}, \xi^{(t+1)}) \sim K^\epsilon(\cdot,\cdot \mid a^{(t)},\xi^{(t)}),
 $$
@@ -19,6 +20,7 @@ where $\xi \in \mathcal{E}$ are auxiliary variables, that depend on the rule, an
 
 ### Log-linear Learning Rule
 For this learning rule, there is no need for the auxiliary variables, $\mathcal{E} = \emptyset$. The kernel determines the new action as:
+
 $$
 K^\epsilon \left(a^{(t+1)} = (a_{-i}^{(t)},a_{i}^{(t+1)})\mid a^{(t)} ; \{r_i\}_{i=1}^n \right) = \frac{1}{n} \frac{\epsilon^{-r_i(a^{(t+1)})}}{\sum_{a'_i}{\epsilon^{-r_i(a'_i,a_{-i}^{(t)})}}}
 $$
@@ -34,7 +36,7 @@ $\begin{cases}
             = a_i^{(t)} \quad\text{with prob} \; 1 - \epsilon^c\\
             \sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob} \; \epsilon^c
         \end{cases}
-    \end{cases} $
+    \end{cases}$
 
 <br>
 
@@ -46,7 +48,7 @@ $\begin{cases}
             C \quad\text{with prob} \; \epsilon^{1-r_i(a^{(t+1)})}\\
             D \quad\text{otherwise}
         \end{cases}
-    \end{cases} $
+    \end{cases}$
 
 
 **Notice:** In the case of the Marden Mood learning rule, the term $\epsilon^{1-r_i(a^{(t+1)})}$ must be a valid probability. For this reason, the implementation takes care of the rewards normalisation. On the contrary, the Log-linear learning rule employs a softmax update, which inherently normalizes the rewards; applying normalization beforehand would result in an additional compression of the value range.
