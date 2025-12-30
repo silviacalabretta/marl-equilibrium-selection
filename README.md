@@ -148,7 +148,7 @@ pip install -r requirements.txt
 You can run experiments by executing
 
 ```bash
-python src/main.py
+python -m src.main
 ```
 
 and providing the following optional arguments:
@@ -160,6 +160,12 @@ and providing the following optional arguments:
 * **`--save`** (flag): if present, the generated plots will be saved to a file instead of being displayed on the screen [default: False];
 * **`--output-path`** (str): can be used to specify the file path where the generated plots should be saved [default: `"out/plot.png"`];
 * **`--no-override`** (flag): if present, plot-saving functions will generate unique filenames to prevent accidentally overwriting existing output files [default: False].
+
+Example:
+
+```bash
+python -m src.main --iterations 2000 --game staghunt --learning-rule mardenmood --rule-coeffs 0.01 2  --save --no-override
+```
 
 ---
 

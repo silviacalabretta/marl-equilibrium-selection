@@ -50,7 +50,7 @@ def _find_unique_path(path):
         return path
 
     # looks for base_filename + number, Pattern: base_filename (number)? .extension
-    pattern = re.compile(r"^" + re.escape(base_filename) + r"(\d*)" + re.escape(extension) + r"$")
+    pattern = re.compile(r"^" + re.escape(base_filename) + r"(_(\d+))?" + re.escape(extension) + r"$")
     
     existing_files = [f for f in os.listdir(directory) if pattern.match(f)]
     
@@ -60,7 +60,7 @@ def _find_unique_path(path):
     # if there are duplicates, find the highest index
     max_index = 0
     for filename in existing_files:
-        match = re.search(r"(\d+)" + re.escape(extension) + r"$", filename)
+        match = re.search(r"((\d+))" + re.escape(extension) + r"$", filename)
         if match:
             index = int(match.group(1))
             if index > max_index:
