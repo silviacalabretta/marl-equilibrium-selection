@@ -1,5 +1,7 @@
 # Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework
 
+<small>Final project for the Reinforcement Learning course, developed together with Ludovica Bianchi.</small>
+
 This work implements what proposed in [Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework](https://arxiv.org/abs/2406.08844), written by Runyu Zhang, Jeff Shamma, Na Li. The paper addresses the problem of equilibrium selection in multi-agent reinforcement learning (MARL). 
 
 While many MARL algorithms ensure convergence to some Nash equilibrium (NE), these equilibria can differ significantly in terms of rewards and social welfare. Building on insights from classical game theory, where decentralized learning can select potential-maximizing or Pareto-optimal NEs in normal-form games, we implement a unified framework for equilibrium selection in stochastic games. The framework is modular and adaptable, allowing established learning rules and selection results from normal-form games to be extended to the MARL setting.
@@ -66,7 +68,7 @@ This identical interest game captures the process of two players collaboratively
 - Location 0 has reward 1 at the shallow level and 0.5 at the deep level. 
 - Location 1 has reward 0 at the shallow level and 2 at the deep level. 
 
-<img src="img/treasure_game.png" alt="Description of the Treasure Game" width="50%">
+<img src="img/treasure_game.png" alt="Description of the Treasure Game" width="35%">
 
 The process can be summarized as a stochastic game. For h = 1, there’s only one state and thus the stage reward is given by a 2 by 2 reward matrix with nonzero reward of value 1 only when a = (0,0). The transition to the second stage follows the following transition rule: 
 - if both players 1 and 2 choose to dig at location 0 ($a_1 = a_2 = 0$), then the game will transit to state $s = A$, where they can arrive at the deep level for location 0 and shallow level at location 1;
