@@ -26,17 +26,17 @@ K^\epsilon \left(a^{(t+1)} = (a_{-i}^{(t)},a_{i}^{(t+1)})\mid a^{(t)} ; \{r_i\}_
 $$
 
 ### Marden Mood Learning Rule
-For this learning rule, the hidden variable $\xi$ takes the form $\xi = (\xi_1, \dots, \xi_n)$, where $\xi_i \in {C,D}$ represents the mood of agent *i* (C stands for Content, D for Discontent). The updating rule is the following.
+For this learning rule, the hidden variable $\xi$ takes the form $\xi = (\xi_1, \dots, \xi_n)$, where $\xi_i \in \{ C,D \}$ represents the mood of agent *i* (C stands for Content, D for Discontent). The updating rule is the following.
 
 *Action dynamics:* 
 
 $$
 \begin{cases}
-    \text{if} \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ 
+    \text{if } \xi_i^{(t)} = D \rightarrow a_i^{(t+1)} \sim \text{Unif}(\mathcal{A}_i)\\ 
     \\
-    \text{if} \xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}
-        = a_i^{(t)} \quad\text{with prob } 1 - \epsilon^c\\
-        \sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) \quad\text{with prob } \epsilon^c
+    \text{if } \xi_i^{(t)} = C \rightarrow a_i^{(t+1)} \begin{cases}
+        = a_i^{(t)} &\text{with prob } 1 - \epsilon^c\\
+        \sim \text{Unif}(\mathcal{A}_i\backslash \{a_i^{(t)}\}) &\text{with prob } \epsilon^c
     \end{cases} 
 \end{cases}
 $$
@@ -45,11 +45,11 @@ $$
 
 $$
 \begin{cases} 
-    \text{if} \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ 
+    \text{if } \xi_i^{(t)} = C \text{ and } a_i^{(t+1)} = a_i^{(t)} \rightarrow \xi_i^{(t+1)} = C \\ 
     \\ 
-    \text{else} \rightarrow \xi_i^{(t+1)} = \begin{cases} 
-        C \quad\text{with prob } \epsilon^{1-r_i(a^{(t+1)})} \\ 
-        D \quad\text{otherwise} 
+    \text{else } \rightarrow \xi_i^{(t+1)} = \begin{cases} 
+        C &\text{with prob } \epsilon^{1-r_i(a^{(t+1)})} \\ 
+        D &\text{otherwise} 
     \end{cases} 
 \end{cases}
 $$
