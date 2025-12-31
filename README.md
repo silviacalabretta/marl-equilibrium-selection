@@ -102,6 +102,31 @@ While the Stag equilibrium gives the higher social welfare, the Hare equilibrium
 
 ---
 
+## Results
+We reproduced the results presented in the paper, as shown in the following plots.
+
+### Treasure Game
+
+**Log-linear learning rule**  
+$\epsilon = 0.01$, $50.000$ iterations, 100 runs.
+
+<img src="img/Treasure_loglinear_EPS=0.01_T50_000_R100.png" alt="Log-linear learning results on the Treasure Game" width="50%">
+
+### Stag Hunt Game
+
+**Log-linear learning rule**  
+$\epsilon = 0.01$, $100.000$ iterations, 100 runs.
+
+<img src="img/StagHunt_loglinear_EPS=0.01_T100_000_R100.png" alt="Log-linear learning results on the Stag Hunt Game" width="50%">
+
+**Marden Mood learning rule**  
+$\epsilon = 0.01, c = 2.0$, 1M iterations, 100 runs.
+
+<img src="img/StagHunt_marden_EPS=0.01_C=2_T=1M_R=100.png" alt="Marden Mood learning results on the Stag Hunt Game" width="50%">
+
+---
+
+
 ## Project Structure
 
 ```
