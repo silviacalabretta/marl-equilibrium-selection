@@ -133,7 +133,7 @@ $\epsilon = 0.01, c = 2.0$, 1M iterations, 100 runs.
 .
 ├── img/                                    # Images for documentation
 ├── notebooks/                              # Jupyter notebooks for experimentation
-│   ├── Equilibrium_selection_MARL.ipynb    # Reprodution of paper's results
+│   ├── Equilibrium_selection_MARL.ipynb    # Reproduction of paper's results
 ├── out/                                    # Output directory for plots
 ├── src/                                    # Source code for the project
 │   ├── game.py                             # Games implementation
@@ -206,3 +206,28 @@ The primary limitations and planned updates are as follows.
 - Number of players: currently hardcoded for exactly two players.
 - Action space: the framework assumes equal actions for both players.
 - History tracking: the tracking variables record values only for Player 0 (this is permissible only because the current games are symmetric).
+
+---
+
+## References
+
+* **Zhang, R., Shamma, J., & Li, N. (2024).**
+  *Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework.*
+  arXiv preprint, arXiv:[2406.08844](https://arxiv.org/abs/2406.08844).
+
+* **Blume, L. E. (1993).**
+  *The Statistical Mechanics of Strategic Interaction.*
+  Games and Economic Behavior, 5(3), 387–424.
+
+* **Marden, J. R., Young, H. P., & Pao, L. Y. (2012).**
+  *Achieving Pareto Optimality Through Distributed Learning.*
+  In **Proceedings of the 51st IEEE Conference on Decision and Control (CDC)**, 7419–7424.
+  [https://doi.org/10.1109/CDC.2012.6426834](https://doi.org/10.1109/CDC.2012.6426834)
+
+* **Young, H. P. (1993).**
+  *The Evolution of Conventions.*
+  Econometrica, 61(1), 57–84.
+
+* **Marden, J. R., & Shamma, J. S. (2012).**
+  *Revisiting Log-linear Learning: Asynchrony, Completeness and Payoff-based Implementation.*
+  Games and Economic Behavior, 75(2), 788–808.
