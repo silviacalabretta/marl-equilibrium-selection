@@ -42,7 +42,14 @@ def parse_args():
     parser.add_argument("--num-runs", type=int, default=1, 
                         help="Number of independent learning trajectories to run. ")
 
-    return parser.parse_args()
+    args = parser.parse_args()
+    
+    if args.iterations < 1:
+        parser.error("--iterations must be at least 1")
+    if args.num_runs < 1:
+        parser.error("--num-runs must be at least 1")
+
+    return args
 
 
 def objects_setup(args):
@@ -86,21 +93,24 @@ def main():
     game, learning_rule = objects_setup(args)
 
     learner = UnifiedLearning(game=game, T=args.iterations, learning_rule=learning_rule)
-    learner.run()
-
-    # Print the final V-values and Q-values learnt by player 0
-    learner.print_results()
-
-    # Plot the evolution of the V-value of player 0 in the initial state 
-    learner.plot_convergence(save=args.save, save_path=args.output_path, no_override=args.no_override)
-
-    # Plot the evolution of the policy in the initial state (just actions (0,0) and (1,1))
-    learner.plot_policy_evolution(learner.s1_action_history, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
     
     if args.num_runs > 1:
+    
         actions = learner.run_simulations(num_runs=args.num_runs)
         learner.plot_policy_evolution(actions, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
+    
+    else:
+        learner.run()
 
+        # Print the final V-values and Q-values learnt by player 0
+        learner.print_results()
+
+        # Plot the evolution of the V-value of player 0 in the initial state 
+        learner.plot_convergence(save=args.save, save_path=args.output_path, no_override=args.no_override)
+
+        # Plot the evolution of the policy in the initial state (just actions (0,0) and (1,1))
+        learner.plot_policy_evolution(learner.s1_action_history, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
+    
 
 if __name__ == "__main__":
     main()
