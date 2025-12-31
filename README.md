@@ -142,7 +142,7 @@ $\epsilon = 0.01, c = 2.0$, 1M iterations, 100 runs.
 │   ├── plot_utils.py                       # Utility functions for generating plots
 │   └── unified_learning.py                 # MARL framework implementation
 ├── slides.pdf                              # Project presentation slides
-├── requirements.txt                        # List of required Python packages/dependencies
+├── requirements.txt                        # List of required Python dependencies
 └── README.md                               # You're here!
 ```
 
@@ -221,7 +221,7 @@ The primary limitations and planned updates are as follows.
 
 * **Marden, J. R., Young, H. P., & Pao, L. Y. (2012).**
   *Achieving Pareto Optimality Through Distributed Learning.*
-  In **Proceedings of the 51st IEEE Conference on Decision and Control (CDC)**, 7419–7424.
+  In Proceedings of the 51st IEEE Conference on Decision and Control (CDC), 7419–7424.
   [https://doi.org/10.1109/CDC.2012.6426834](https://doi.org/10.1109/CDC.2012.6426834)
 
 * **Young, H. P. (1993).**
