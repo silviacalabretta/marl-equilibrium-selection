@@ -128,7 +128,7 @@ While the Stag equilibrium gives the higher social welfare, the Hare equilibrium
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/marl-equilibrium-selection
+git clone https://github.com/silviacalabretta/marl-equilibrium-selection
 cd marl-equilibrium-selection
 ```
 
@@ -162,6 +162,7 @@ and providing the following optional arguments:
 * **`--save`** (flag): if present, the generated plots will be saved to a file instead of being displayed on the screen [default: False];
 * **`--output-path`** (str): can be used to specify the file path where the generated plots should be saved [default: `"out/plot.png"`];
 * **`--no-override`** (flag): if present, plot-saving functions will generate unique filenames to prevent accidentally overwriting existing output files [default: False].
+* **`--num-runs`** (int): the number of independent learning simulations to execute (each run executes the learning process for `--iterations` steps) [default: 1];
 
 Example:
 

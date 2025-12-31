@@ -88,6 +88,22 @@ class HistoryAnalysisMixin:
         self._no_override : bool
     """
 
+    def print_results(self):
+        """ For each stage and state, prints the final V-values and Q-values learnt by player 0, and the pair of actions learnt. """
+        print("\n--- Learnt Values  (Player 0)---")
+        for h in range(1, self.game.H + 1):
+            print(f"\n--- Stage h={h} ---")
+            for s_str, s_idx in self.game.s_map[h].items():
+                print(f"  State '{s_str}':")
+                print(f"    V-value: {self.V[0, h, s_idx]:.4f}")
+                print("    Q-values:")
+                q_matrix = self.Q[0, h, s_idx, :, :]
+                print("         a2=0    a2=1")
+                print(f"    a1=0 [{q_matrix[0,0]:.2f}]  [{q_matrix[0,1]:.2f}]")
+                print(f"    a1=1 [{q_matrix[1,0]:.2f}]  [{q_matrix[1,1]:.2f}]")
+                print(f"    Learnt joint action (Policy): {[int(x) for x in self.a[h][s_idx]]}")
+
+                
     def plot_convergence(self, save=None, save_path=None, no_override=None):
         """Plot convergence of V(s1)."""
         plt.figure(figsize=(10, 6))
@@ -104,21 +120,7 @@ class HistoryAnalysisMixin:
             default_name="value_convergence.png",
             no_override=no_override
         )
-        
-    def print_results(self):
-        """ For each stage and state, prints the final V-values and Q-values learnt by player 0, and the pair of actions learnt. """
-        print("\n--- Learnt Values  (Player 0)---")
-        for h in range(1, self.game.H + 1):
-            print(f"\n--- Stage h={h} ---")
-            for s_str, s_idx in self.game.s_map[h].items():
-                print(f"  State '{s_str}':")
-                print(f"    V-value: {self.V[0, h, s_idx]:.4f}")
-                print("    Q-values:")
-                q_matrix = self.Q[0, h, s_idx, :, :]
-                print("         a2=0    a2=1")
-                print(f"    a1=0 [{q_matrix[0,0]:.2f}]  [{q_matrix[0,1]:.2f}]")
-                print(f"    a1=1 [{q_matrix[1,0]:.2f}]  [{q_matrix[1,1]:.2f}]")
-                print(f"    Learnt joint action (Policy): {[int(x) for x in self.a[h][s_idx]]}")
+
 
     def plot_policy_evolution(self, history, params, save=None, save_path=None, no_override=None):
         """

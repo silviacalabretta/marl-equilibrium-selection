@@ -39,6 +39,9 @@ def parse_args():
     parser.add_argument("--no-override", action="store_true", default=False, 
                         help="If present, plot functions will produce different filenames to avoid ovverriding.")
     
+    parser.add_argument("--num-runs", type=int, default=1, 
+                        help="Number of independent learning trajectories to run. ")
+
     return parser.parse_args()
 
 
@@ -94,6 +97,10 @@ def main():
     # Plot the evolution of the policy in the initial state (just actions (0,0) and (1,1))
     learner.plot_policy_evolution(learner.s1_action_history, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
     
+    if args.num_runs > 1:
+        actions = learner.run_simulations(num_runs=args.num_runs)
+        learner.plot_policy_evolution(actions, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
+
 
 if __name__ == "__main__":
     main()

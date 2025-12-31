@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import copy
+from tqdm import tqdm
 
 from src.game import Game 
 from src.learning_rule import MardenMoodRule
 from src.plot_utils import HistoryAnalysisMixin
+
 
 class UnifiedLearning(HistoryAnalysisMixin):
     """
@@ -24,7 +26,6 @@ class UnifiedLearning(HistoryAnalysisMixin):
         self._save_path = save_path
         self._no_override =no_override
 
-
         # Definition of variables
 
         # Q[player][stage h][state_index][action_pl1][action_pl2]
@@ -42,59 +43,6 @@ class UnifiedLearning(HistoryAnalysisMixin):
         # Save cronology of the state s1 to check convergence
         self.V_history = []             # V-value just of player 0 (we have symmetric games)
         self.s1_action_history = []     # pair of actions taken by both players
-
-    def _normalize_rewards(self,game: Game, prec: int) -> Game:
-        g = copy.deepcopy(game)
-        
-        max_val = 0.0
-        for stage_data in g.rewards.values():
-            for reward_matrix in stage_data.values():
-                max_val = max(max_val, np.max(np.abs(reward_matrix)))
-
-        if max_val == 0:
-            return g  # nothing to normalize
-
-        normalized = {}
-        for stage, stage_data in g.rewards.items():
-            normalized[stage] = {}
-            for state, reward_matrix in stage_data.items():
-                normalized[stage][state] = np.round(reward_matrix / max_val,prec)
-        g.rewards = normalized
-
-        return g
-
-    def _initialize(self):
-        """ Initialisation of Q-values, actions and hidden variables. """
-        
-        actions = self.game.actions
-
-        # Q values are initialised to rewards
-        for h in range(1, self.game.H + 1):
-            for s_str, reward_matrix in self.game.rewards[h].items():
-                s_idx = self.game.s_map[h][s_str]
-                for a1 in actions:
-                    for a2 in actions:
-                        reward = reward_matrix[a1, a2]
-
-                        for i in range(self.game.N):
-                            self.Q[i, h, s_idx, a1, a2] = reward[i]
-
-        # Actions and hidden variables are initialised randomly
-        for h in range(1, self.game.H + 1):
-            self.a[h] = {}
-            self.hidden[h] = {}
-            for _, s_idx in self.game.s_map[h].items():
-
-                a1_rand = np.random.choice(actions)
-                a2_rand = np.random.choice(actions)
-                self.a[h][s_idx] = [a1_rand, a2_rand]
-                
-                if isinstance(self.learning_rule, MardenMoodRule):
-                    hidd1_rand = np.random.choice(['C','D'])
-                    hidd2_rand = np.random.choice(['C','D'])
-                    self.hidden[h][s_idx] = [hidd1_rand, hidd2_rand]
-                else:
-                    self.hidden[h][s_idx] = [0.0, 0.0]
 
 
     def run(self):
@@ -158,12 +106,87 @@ class UnifiedLearning(HistoryAnalysisMixin):
 
             self.s1_action_history.append(action_in_s1)
 
-    # def run_experiments(self, num_runs):
-    #     all_runs = []
 
-    #     for _ in range(num_runs):
-    #         self.reset()    #DA DEFINIRE, CAPIRE COME
-    #         self.run()   # esegue una traiettoria, riempiendo self.s1_action_history
-    #         all_runs.append(self.s1_action_history.copy())
+    def run_simulations(self, num_runs):
+        """ Executes num_runs simulations of the learning process. """
+        all_runs_actions = []
+        # all_runs_value = []
 
-    #     return all_runs
+        print(f"Starting {num_runs} simulations...")
+        for _ in tqdm(range(num_runs), desc="Runs", unit="run", ncols=70):
+            self._reset()
+            self.run()   
+            all_runs_actions.append(self.s1_action_history.copy())
+            # all_runs_value.append(self.V_history.copy())
+            
+        return all_runs_actions
+    
+
+
+    def _initialize(self):
+        """ Initialisation of Q-values, actions and hidden variables. """
+        
+        actions = self.game.actions
+
+        # Q values are initialised to rewards
+        for h in range(1, self.game.H + 1):
+            for s_str, reward_matrix in self.game.rewards[h].items():
+                s_idx = self.game.s_map[h][s_str]
+                for a1 in actions:
+                    for a2 in actions:
+                        reward = reward_matrix[a1, a2]
+
+                        for i in range(self.game.N):
+                            self.Q[i, h, s_idx, a1, a2] = reward[i]
+
+        # Actions and hidden variables are initialised randomly
+        for h in range(1, self.game.H + 1):
+            self.a[h] = {}
+            self.hidden[h] = {}
+            for _, s_idx in self.game.s_map[h].items():
+
+                a1_rand = np.random.choice(actions)
+                a2_rand = np.random.choice(actions)
+                self.a[h][s_idx] = [a1_rand, a2_rand]
+                
+                if isinstance(self.learning_rule, MardenMoodRule):
+                    hidd1_rand = np.random.choice(['C','D'])
+                    hidd2_rand = np.random.choice(['C','D'])
+                    self.hidden[h][s_idx] = [hidd1_rand, hidd2_rand]
+                else:
+                    self.hidden[h][s_idx] = [0.0, 0.0]
+
+
+    def _normalize_rewards(self,game: Game, prec: int) -> Game:
+        g = copy.deepcopy(game)
+        
+        max_val = 0.0
+        for stage_data in g.rewards.values():
+            for reward_matrix in stage_data.values():
+                max_val = max(max_val, np.max(np.abs(reward_matrix)))
+
+        if max_val == 0:
+            return g  # nothing to normalize
+
+        normalized = {}
+        for stage, stage_data in g.rewards.items():
+            normalized[stage] = {}
+            for state, reward_matrix in stage_data.items():
+                normalized[stage][state] = np.round(reward_matrix / max_val,prec)
+        g.rewards = normalized
+
+        return g
+
+
+    def _reset(self):
+        """
+        Resets the attributes Q, V, a, hidden and the histories to the initial values (like in __init__).
+        """
+        self.Q.fill(0) 
+        self.V.fill(0) 
+
+        self.a = {}
+        self.hidden = {}
+
+        self.V_history = []
+        self.s1_action_history = []
