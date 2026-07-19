@@ -1,7 +1,5 @@
 # Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework
 
-<sub>_Final project for the Reinforcement Learning course, developed together with Ludovica Bianchi._</sub>
-
 This work implements what proposed in [Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework](https://arxiv.org/abs/2406.08844), written by Runyu Zhang, Jeff Shamma, Na Li. The paper addresses the problem of equilibrium selection in multi-agent reinforcement learning (MARL). 
 
 While many MARL algorithms ensure convergence to some Nash equilibrium (NE), these equilibria can differ significantly in terms of rewards and social welfare. Building on insights from classical game theory, where decentralized learning can select potential-maximizing or Pareto-optimal NEs in normal-form games, we implement a unified framework for equilibrium selection in stochastic games. The framework is modular and adaptable, allowing established learning rules and selection results from normal-form games to be extended to the MARL setting.
@@ -181,7 +179,7 @@ python -m src.main
 and providing the following optional arguments:
 
 * **`--iterations`** (int): total number of learning steps the simulation will run [default: 1000];
-* **`--game`** (str): `"treasure"` or `"staghunt"` [default: ];
+* **`--game`** (str): `"treasure"` or `"staghunt"` [default: `"treasure"`];
 * **`--learning-rule`** (str):`"loglinear"` or `"mardenmood"` [default: `"loglinear"`];
 * **`--rule-coeffs`** (float): parameters for the chosen learning rule [default: 0.01];
 * **`--save`** (flag): if present, the generated plots will be saved to a file instead of being displayed on the screen [default: False];
