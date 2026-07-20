@@ -4,7 +4,7 @@ This work implements what proposed in [Equilibrium Selection for Multi-agent Rei
 
 While many MARL algorithms ensure convergence to some Nash equilibrium (NE), these equilibria can differ significantly in terms of rewards and social welfare. Building on insights from classical game theory, where decentralized learning can select potential-maximizing or Pareto-optimal NEs in normal-form games, we implement a unified framework for equilibrium selection in stochastic games. The framework is modular and adaptable, allowing established learning rules and selection results from normal-form games to be extended to the MARL setting.
 
-<img src="img/algorithm1.png" alt="Learning algorithm" width="50%">
+<img src="imgs/algorithm1.png" alt="Learning algorithm" width="50%">
 
 We apply this framework to two normal-form games with two players and two stages $h = 1,2$, showing the convergence with two different learning rules.
 
@@ -66,14 +66,14 @@ This identical interest game captures the process of two players collaboratively
 - Location 0 has reward 1 at the shallow level and 0.5 at the deep level. 
 - Location 1 has reward 0 at the shallow level and 2 at the deep level. 
 
-<img src="img/treasure_game.png" alt="Description of the Treasure Game" width="35%">
+<img src="imgs/treasure_game.png" alt="Description of the Treasure Game" width="35%">
 
 The process can be summarized as a stochastic game. For h = 1, there’s only one state and thus the stage reward is given by a 2 by 2 reward matrix with nonzero reward of value 1 only when a = (0,0). The transition to the second stage follows the following transition rule: 
 - if both players 1 and 2 choose to dig at location 0 ($a_1 = a_2 = 0$), then the game will transit to state $s = A$, where they can arrive at the deep level for location 0 and shallow level at location 1;
 - if $a_1 = a_2 = 1$ then the game will transit to $s = B$, where they can arrive at the deep level for location 1 and shallow level at location 0;
 - if the players fail to agree on a location, ($a = (0,1) or (1,0)$), they make no progress ($s = O$) and the reward will remain the same as stage $h = 1$.
 
-<img src="img/treasure_rewards.png" alt="Description of the Treasure Game rewards" width="50%">
+<img src="imgs/treasure_rewards.png" alt="Description of the Treasure Game rewards" width="50%">
 
 In this game, there are two strict NEs:
 1. agreeing twice on location 0, i.e. $a_{i,h} = 0$ for $h = 1,2$ and $i = 1,2$; 
@@ -89,7 +89,7 @@ This coordination game models the process of two players choosing whether to hun
 
 The process can be summarized as a stochastic game:
 
-<img src="img/staghunt_rewards1.png" alt="Description of the Stag Hunt Game rewards" width="50%">
+<img src="imgs/staghunt_rewards1.png" alt="Description of the Stag Hunt Game rewards" width="50%">
 
 In this game, there are two strict Nash equilibria:
 
@@ -108,19 +108,19 @@ We reproduced the results presented in the paper, as shown in the following plot
 **Log-linear learning rule**  
 $\epsilon = 0.01$, $50.000$ iterations, 100 runs.
 
-<img src="img/Treasure_loglinear_EPS=0.01_T50_000_R100.png" alt="Log-linear learning results on the Treasure Game" width="75%">
+<img src="imgs/Treasure_loglinear_EPS=0.01_T50_000_R100.png" alt="Log-linear learning results on the Treasure Game" width="75%">
 
 ### Stag Hunt Game
 
 **Log-linear learning rule**  
 $\epsilon = 0.01$, $100.000$ iterations, 100 runs.
 
-<img src="img/StagHunt_loglinear_EPS=0.01_T100_000_R100.png" alt="Log-linear learning results on the Stag Hunt Game" width="75%">
+<img src="imgs/StagHunt_loglinear_EPS=0.01_T100_000_R100.png" alt="Log-linear learning results on the Stag Hunt Game" width="75%">
 
 **Marden Mood learning rule**  
 $\epsilon = 0.01, c = 2.0$, 1M iterations, 100 runs.
 
-<img src="img/StagHunt_marden_EPS=0.01_C=2_T=1M_R=100.png" alt="Marden Mood learning results on the Stag Hunt Game" width="75%">
+<img src="imgs/StagHunt_marden_EPS=0.01_C=2_T=1M_R=100.png" alt="Marden Mood learning results on the Stag Hunt Game" width="75%">
 
 ---
 
@@ -129,7 +129,7 @@ $\epsilon = 0.01, c = 2.0$, 1M iterations, 100 runs.
 
 ```
 .
-├── img/                                    # Images for documentation
+├── imgs/                                    # Images for documentation
 ├── notebooks/                              # Jupyter notebooks for experimentation
 │   ├── Equilibrium_selection_MARL.ipynb    # Reproduction of paper's results
 ├── out/                                    # Output directory for plots
