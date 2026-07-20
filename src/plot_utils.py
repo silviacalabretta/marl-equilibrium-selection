@@ -75,7 +75,6 @@ def _find_unique_path(path):
 
 
 
-
 class HistoryAnalysisMixin:
     """
     Provides storage and plotting utilities for learning histories.

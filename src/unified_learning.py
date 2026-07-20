@@ -122,7 +122,6 @@ class UnifiedLearning(HistoryAnalysisMixin):
         return all_runs_actions
     
 
-
     def _initialize(self):
         """ Initialisation of Q-values, actions and hidden variables. """
         

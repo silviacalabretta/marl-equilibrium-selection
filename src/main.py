@@ -108,7 +108,7 @@ def main():
         # Plot the evolution of the V-value of player 0 in the initial state 
         learner.plot_convergence(save=args.save, save_path=args.output_path, no_override=args.no_override)
 
-        # Plot the evolution of the policy in the initial state (just actions (0,0) and (1,1))
+        # Plot the evolution of the policy in the initial state (only actions (0,0) and (1,1))
         learner.plot_policy_evolution(learner.s1_action_history, params=args.rule_coeffs, save=args.save, save_path=args.output_path, no_override=args.no_override)
     
 

@@ -78,10 +78,10 @@ class MardenMoodRule(LearningRule):
         new_action = current_action[:]
 
         for i in range(num_players):
-            if current_hidden[i]  == 'D':                       # discontent -> chooses randomly
+            if current_hidden[i]  == 'D':                   # discontent -> chooses randomly
                 new_action[i] = np.random.choice(actions)
 
-            else:                                               # content -> explores with a small probability
+            else:                                           # content -> explores with a small probability
                 prob_explore = pow(self.epsilon,self.c)
 
                 if np.random.rand() < prob_explore:
